@@ -18,7 +18,7 @@ FloatNum: IntNum Point IntNum;
 
 Space: ' ';
 Tab: '\t';
-NextLine: '\n;
+NextLine: '\n';
 Return: '\r';
 
 Blank: (Space | Tab | NextLine | Return)+ -> skip;
@@ -31,17 +31,17 @@ polish_op_una: (Pow | Sqrt | Neg);
 
 operation: 
 
-    (((number | operation) | (LeftBracket + (number | operation) RightBracket))
+    ((((number | operation) | (LeftBracket + (number | operation) RightBracket))
     + classic_op +
     ((number | operation) | (LeftBracket + (number | operation) RightBracket))) | 
 
     (polish_op_mult + LeftBracket + 
         ((number | operation) | (LeftBracket + (number | operation) RightBracket))
-    + (Comma + number)* + RightBracket ) |
+    + (Comma + number)* + RightBracket) |
 
     (polish_op_una + LeftBracket +
         ((number | operation) | (LeftBracket + (number | operation) RightBracket))
-    + RightBracket)
+    + RightBracket))
     ;
 
 expression: (operation | numer)
