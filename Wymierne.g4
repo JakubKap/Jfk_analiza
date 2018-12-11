@@ -37,12 +37,12 @@ operation:
 
     (polish_op_mult + LeftBracket + 
         ((number | operation) | (LeftBracket + (number | operation) RightBracket))
-    + (Comma + number)* + RightBracket) |
+    + (Comma + number)*  RightBracket) |
 
     (polish_op_una + LeftBracket +
         ((number | operation) | (LeftBracket + (number | operation) RightBracket))
     + RightBracket))
     ;
 
-expression: (operation | numer)
+expression: (operation | number);
 // 2 + (7 + 9) * 4 * (23 + 5)
