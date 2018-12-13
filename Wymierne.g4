@@ -29,20 +29,36 @@ classic_op: (Add | Sub | Mul | Div);
 polish_op_mult: (Min | Max);
 polish_op_una: (Pow | Sqrt | Neg);
 
-operation: 
-
-    ((((number | operation) | (LeftBracket + (number | operation) RightBracket))
-    + classic_op +
-    ((number | operation) | (LeftBracket + (number | operation) RightBracket))) | 
-
-    (polish_op_mult + LeftBracket + 
-        ((number | operation) | (LeftBracket + (number | operation) RightBracket))
-    + (Comma + number)*  RightBracket) |
-
-    (polish_op_una + LeftBracket +
-        ((number | operation) | (LeftBracket + (number | operation) RightBracket))
-    + RightBracket))
+expression:
+    classic_expression |
+    safe_expression |
+    LeftBracket
+    expression
+    RightBracket
     ;
 
-expression: (operation | number);
-// 2 + (7 + 9) * 4 * (23 + 5)
+safe_expression:
+    polish_mult_expression |
+    polish_una_expression |
+    number
+;
+
+classic_expression:
+    safe_expression
+     classic_op
+    expression
+;
+
+polish_mult_expression:
+    polish_op_mult LeftBracket
+        expression
+    (Comma expression)*  RightBracket
+;
+
+polish_una_expression:
+    polish_op_una LeftBracket
+        expression
+    RightBracket
+;
+
+//((2))
