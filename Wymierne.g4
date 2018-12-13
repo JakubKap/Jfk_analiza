@@ -25,9 +25,9 @@ Blank: (Space | Tab | NextLine | Return)+ -> skip;
 
 number: (IntNum | FloatNum);
 
-classic_op: (Add | Sub | Mul | Div);
+classic_op: (Pow | Add | Sub | Mul | Div);
 polish_op_mult: (Min | Max);
-polish_op_una: (Pow | Sqrt | Neg);
+polish_op_una: (Sqrt | Neg);
 
 expression:
     classic_expression |
