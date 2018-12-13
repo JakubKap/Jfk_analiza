@@ -1,11 +1,4 @@
 gen/
-Wymierne.interp
-WymierneLexer.interp
-WymierneLexer.py
-WymierneLexer.tokens
-WymierneListener.py
-WymierneParser.py
-Wymierne.tokens
 
 ### PyCharm ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and WebStorm
