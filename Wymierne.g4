@@ -16,10 +16,10 @@ RightBracket: ')';
 Comma: ',';
 FloatNum: IntNum Point IntNum;
 
-Space: ' ';
-Tab: '\t';
-NextLine: '\n';
-Return: '\r';
+fragment Space: ' ';
+fragment Tab: '\t';
+fragment NextLine: '\n';
+fragment Return: '\r';
 
 Blank: (Space | Tab | NextLine | Return)+ -> skip;
 
