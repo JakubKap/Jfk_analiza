@@ -5,6 +5,7 @@ Sub: '-';
 Mul: '*';
 Div: '/';
 Pow: '^';
+Mod: '%';
 Sqrt: 'sqrt';
 Neg: 'neg';
 Min: 'min';
@@ -25,7 +26,7 @@ Blank: (Space | Tab | NextLine | Return)+ -> skip;
 
 number: (IntNum | FloatNum);
 
-classic_op: (Pow | Add | Sub | Mul | Div);
+classic_op: (Pow | Add | Sub | Mul | Div | Mod);
 polish_op_mult: (Min | Max);
 polish_op_una: (Sqrt | Neg);
 
