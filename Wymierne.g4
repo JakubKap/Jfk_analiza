@@ -6,6 +6,7 @@ Mul: '*';
 Div: ':';
 Pow: '^';
 Mod: '%';
+Cong: 'cong';
 Sqrt: 'sqrt';
 Neg: 'neg';
 Abs: 'abs';
@@ -32,13 +33,15 @@ Blank: (Space | Tab | NextLine | Return)+ -> skip;
 
 number: (IntNum | Fraction);
 
-classic_op: (Pow | Add | Sub | Mul | Div | Mod);
+classic_op: ( Add | Sub | Mul | Div | Mod | Cong);
 polish_op_mult: (Min | Max);
 polish_op_una: (Sqrt | Neg | Abs | Floor | Ceil | Round);
+pow_op: Pow;
 
 expression:
     classic_expression |
     safe_expression |
+    pow_expression |
     LeftBracket
     expression
     RightBracket
@@ -67,5 +70,11 @@ polish_una_expression:
         expression
     RightBracket
 ;
+
+pow_expression:
+    safe_expression
+    pow_op
+    IntNum
+    ;
 
 //((2))
