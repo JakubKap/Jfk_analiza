@@ -9,6 +9,9 @@ Mod: '%';
 Sqrt: 'sqrt';
 Neg: 'neg';
 Abs: 'abs';
+Floor: 'floor';
+Ceil: 'ceil';
+Round: 'round';
 Min: 'min';
 Max: 'max';
 IntNum: ('0' | [1-9] + [0-9]*);
@@ -29,7 +32,7 @@ number: (IntNum | FloatNum);
 
 classic_op: (Pow | Add | Sub | Mul | Div | Mod);
 polish_op_mult: (Min | Max);
-polish_op_una: (Sqrt | Neg | Abs);
+polish_op_una: (Sqrt | Neg | Abs | Floor | Ceil | Round);
 
 expression:
     classic_expression |
