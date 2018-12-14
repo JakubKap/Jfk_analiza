@@ -3,7 +3,7 @@ grammar Wymierne;
 Add: '+';
 Sub: '-';
 Mul: '*';
-Div: '/';
+Div: ':';
 Pow: '^';
 Mod: '%';
 Sqrt: 'sqrt';
@@ -14,12 +14,14 @@ Ceil: 'ceil';
 Round: 'round';
 Min: 'min';
 Max: 'max';
-IntNum: ('0' | [1-9] + [0-9]*);
+IntNum: ('0' | [1-9] + [0-9]*); //licznik ułamka lub liczba całkowita np. 4/1
+Denominator: ([1-9] + [0-9]*); //mianownik ułamka
+FractionBar: '/'; //kreska ułamowa
+Fraction: IntNum FractionBar Denominator; //ułamek
 Point: '.';
 LeftBracket: '(';
 RightBracket: ')';
 Comma: ',';
-FloatNum: IntNum Point IntNum;
 
 fragment Space: ' ';
 fragment Tab: '\t';
@@ -28,7 +30,7 @@ fragment Return: '\r';
 
 Blank: (Space | Tab | NextLine | Return)+ -> skip;
 
-number: (IntNum | FloatNum);
+number: (IntNum | Fraction);
 
 classic_op: (Pow | Add | Sub | Mul | Div | Mod);
 polish_op_mult: (Min | Max);
