@@ -54,8 +54,8 @@ safe_expression:
 ;
 
 classic_expression:
-    safe_expression
-     classic_op
+    (safe_expression | pow_expression )
+    classic_op
     expression
 ;
 
@@ -75,6 +75,6 @@ pow_expression:
     safe_expression
     pow_op
     IntNum
-    ;
+;
 
 //((2))
