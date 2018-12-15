@@ -58,39 +58,37 @@ pow_expression:
 
 safe_expression:
     function_expression |
-    function_single_value |
+    function_single_value_expression |
     number |
     expression_in_brackets
 ;
 
 secondary_expression:
-    (
-        safe_expression |
-        pow_expression
-    ) |
-    expression_in_brackets
+
+    safe_expression |
+    pow_expression
 ;
 
 multiplicative_expression:
-    ( secondary_expression
-        (
-            multiplicative_operator
-            secondary_expression
-        )*
-    ) |
-    expression_in_brackets
-;
 
-expression_in_brackets:
-    (LeftBracket expression RightBracket)
+    secondary_expression
+    (
+        multiplicative_operator
+        secondary_expression
+    )*
 ;
 
 expression:
+
     multiplicative_expression
     (
         additive_operator
         multiplicative_expression
     )*
+;
+
+expression_in_brackets:
+    (LeftBracket expression RightBracket)
 ;
 
 
