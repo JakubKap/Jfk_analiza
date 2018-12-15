@@ -33,48 +33,65 @@ Blank: (Space | Tab | NextLine | Return)+ -> skip;
 
 number: (IntNum | Fraction);
 
-classic_op: ( Add | Sub | Mul | Div | Mod | Cong);
-polish_op_mult: (Min | Max);
-polish_op_una: (Sqrt | Neg | Abs | Floor | Ceil | Round);
-pow_op: Pow;
+function: (Min | Max);
+function_single_value: (Sqrt | Neg | Abs | Floor | Ceil | Round);
 
-expression:
-    classic_expression |
-    safe_expression |
-    pow_expression |
-    LeftBracket
-    expression
-    RightBracket
-    ;
+pow_operator: Pow;
+additive_operator: (Add | Sub);
+multiplicative_operator: (Mul | Div | Mod | Cong);
 
-safe_expression:
-    polish_mult_expression |
-    polish_una_expression |
-    number
+function_expression:
+    function
+    LeftBracket expression (Comma expression)*  RightBracket
 ;
 
-classic_expression:
-    (safe_expression | pow_expression )
-    classic_op
-    expression
-;
-
-polish_mult_expression:
-    polish_op_mult LeftBracket
-        expression
-    (Comma expression)*  RightBracket
-;
-
-polish_una_expression:
-    polish_op_una LeftBracket
-        expression
-    RightBracket
+function_single_value_expression:
+    function_single_value
+    LeftBracket expression RightBracket
 ;
 
 pow_expression:
     safe_expression
-    pow_op
+    pow_operator
     IntNum
 ;
+
+safe_expression:
+    function_expression |
+    function_single_value |
+    number |
+    expression_in_brackets
+;
+
+secondary_expression:
+    (
+        safe_expression |
+        pow_expression
+    ) |
+    expression_in_brackets
+;
+
+multiplicative_expression:
+    ( secondary_expression
+        (
+            multiplicative_operator
+            secondary_expression
+        )*
+    ) |
+    expression_in_brackets
+;
+
+expression_in_brackets:
+    (LeftBracket expression RightBracket)
+;
+
+expression:
+    multiplicative_expression
+    (
+        additive_operator
+        multiplicative_expression
+    )*
+;
+
 
 //((2))
