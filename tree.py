@@ -12,8 +12,11 @@ def drawTreeReq(tree, level):
 
         if not isinstance(child, antlr4.tree.Tree.TerminalNode):
 
-            print('    '*level + '.')
-            drawTreeReq(child, level+1)
+            if child_len == 1:
+                drawTreeReq(child, level)
+            else:
+                print('    '*level + '.')
+                drawTreeReq(child, level+1)
         else:
             print('    '*level + tree.getText())
 
