@@ -43,11 +43,15 @@ class Fraction:
             result -= other
         return Fraction(self.nom)
 
+    def __pow__(self, other):
+        return Fraction(self.nom ** other, self.den ** other)
+
     def __floordiv__(self, other):
-        pass
+        return (self / other) - (self % other)
 
     def __gt__(self, other):
-        pass
+        common = lcm(self.den, other.den)
+        return (self.nom * common / self.den) > (other.nom * common / other.den)
 
     def __truediv__(self, other):
         return self * reversed(other)
@@ -72,7 +76,7 @@ def f(nom, den):
     return Fraction(nom, den)
 
 
-def fmin(*args):
+def fmin(args):
     result = args[0]
     _result = result.nom / result.den
 
@@ -82,6 +86,39 @@ def fmin(*args):
             _result = result.nom / result.den
 
     return result
+
+def fmax(args):
+    result = args[0]
+    _result = result.nom / result.den
+
+    for a in args[1:]:
+        if (a.nom / a.den) > _result:
+            result = a
+            _result = result.nom / result.den
+
+    return result
+
+def fsqrt(a):
+    pass
+
+def fabs(a):
+    if a < f(0, 1):
+        return a.negative()
+    return a
+
+def ffloor(a):
+    return f(a.nom - (a.nom % a.den), a.den)
+
+def fceil(a):
+    return f(a.nom + a.den - (a.nom % a.den), a.den)
+
+def fround(a):
+    modu = (a.nom % a.den) / a.den
+    if modu >= 0.5:
+        return fceil(a)
+    return floor(a)
+
+
 
 
 print(fmin(f(2, 3), f(3, 4), f(1, 5), f(8, 9)))
