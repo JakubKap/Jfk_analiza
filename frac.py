@@ -12,11 +12,15 @@ def lcm(a, b):
 class Fraction:
 
     def __init__(self, nom: int, den: int):
-        assert (den > 0), "0 w mianowniku"
+        assert (den != 0), "0 w mianowniku"
 
-        self.nom = nom
-        self.den = den
-        self = self.norm()
+        if den < 0:
+            den *= -1
+            nom *= -1
+
+        divisor = gcd(nom, den)
+        self.nom = nom / divisor
+        self.den = den / divisor
 
     def __str__(self):
         if self.den == 1:
@@ -116,4 +120,4 @@ def fround(a):
     modu = (a.nom % a.den) / a.den
     if modu >= 0.5:
         return fceil(a)
-    return floor(a)
+    return ffloor(a)

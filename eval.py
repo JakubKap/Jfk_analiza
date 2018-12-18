@@ -31,7 +31,6 @@ def evaluate_safe(tree):
     elif expr_type == 'Function_single_value_expressionContext':
 
         children = tree.getChildren()
-        expr_list = []
         iter(children)
         func_name = next(children).getText()
         next(children)
