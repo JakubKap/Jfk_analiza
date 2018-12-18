@@ -55,3 +55,16 @@ class Fraction:
 # Quick fraction
 def f(nom, den):
     return Fraction(nom, den)
+
+def fmin(*args):
+    result = args[0]
+    _result = result.nom / result.den
+
+    for a in args[1:]:
+        if (a.nom / a.den) < _result:
+            result = a
+            _result = result.nom / result.den
+
+    return result
+
+print(fmin(f(2, 3), f(3, 4), f(1,5), f(8, 9)))
