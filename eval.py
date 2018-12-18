@@ -2,7 +2,9 @@
 import antlr4
 from gen.WymierneLexer import *
 from gen.WymierneParser import *
+from frac import *
 import sys
+import math
 
 def evaluate_further(tree):
     return int(tree.getText())
@@ -20,8 +22,17 @@ def evaluate_mult(tree):
             sign = 1
         elif text == ':':
             sign = -1
+        elif text == '%':
+            sign = 2
+        elif text == 'cong':
+            sign = 3
         else:
-            result *= evaluate_further(child) ** sign
+            if sign == 2:
+                result = result % evaluate_further(child)
+            elif sign == 3:
+                result = math.floor(result / evaluate_further(child))
+            else:
+                result *= evaluate_further(child) ** sign
 
     return result
 
@@ -44,6 +55,7 @@ def evaluate(tree):
                 yield sign * evaluate_mult(child)
 
     return sum(gen_values())
+
 
 
 if __name__ == '__main__':
