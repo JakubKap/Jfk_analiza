@@ -16,7 +16,7 @@ class Fraction:
 
         self.nom = nom
         self.den = den
-        self.norm()
+        self = self.norm()
 
     def __str__(self):
         return "{}/{}".format(self.nom, self.den)
@@ -32,7 +32,7 @@ class Fraction:
         return self + other.negative()
 
     def __mul__(self, other):
-        return Fraction(self.nom * other.nom, self.den * other.deb)
+        return Fraction(self.nom * other.nom, self.den * other.den)
 
     def __div__(self, other):
         return self * reversed(other)
