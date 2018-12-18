@@ -52,6 +52,8 @@ def evaluate_safe(tree):
 
     elif expr_type == 'NumberContext':
         splitted = tree.getText().split('/', 1)
+        if len(splitted) == 1:
+            return Fraction(int(tree.getText()), 1)
         return Fraction(int(splitted[0]), int(splitted[1]))
     elif expr_type == 'Expression_in_bracketsContext':
 
@@ -79,7 +81,7 @@ def evaluate_further(tree):
 def evaluate_mult(tree):
 
     sign = 1
-    result = 1
+    result = f(1, 1)
 
     for child in tree.getChildren():
 
@@ -99,8 +101,10 @@ def evaluate_mult(tree):
                 result = result % evaluate_further(childchild)
             elif sign == 3:
                 result = result // evaluate_further(childchild)
-            else:
-                result *= evaluate_further(childchild) ** sign
+            elif sign == 1:
+                result *= evaluate_further(childchild)
+            elif sign == -1:
+                result *= reversed(evaluate_further(childchild))
 
     return result
 
@@ -108,21 +112,24 @@ def evaluate_mult(tree):
 
 def evaluate(tree):
 
-    def gen_values():
+    result = Fraction(0, 1)
+    sign = 1
 
-        sign = 1
-        for child in tree.getChildren():
+    for child in tree.getChildren():
 
-            text = child.getText()
+        text = child.getText()
 
-            if text == '+':
-                sign = 1
-            elif text == '-':
-                sign = -1
+        if text == '+':
+            sign = 1
+        elif text == '-':
+            sign = -1
+        else:
+            if sign == 1:
+                result += evaluate_mult(child)
             else:
-                yield sign * evaluate_mult(child)
+                result += evaluate_mult(child).negative()
 
-    return sum(gen_values())
+    return result
 
 
 

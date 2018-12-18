@@ -12,7 +12,7 @@ def lcm(a, b):
 class Fraction:
 
     def __init__(self, nom: int, den: int):
-        assert (den != 0), "0 w mianowniku"
+        assert (den > 0), "0 w mianowniku"
 
         self.nom = nom
         self.den = den
@@ -117,8 +117,3 @@ def fround(a):
     if modu >= 0.5:
         return fceil(a)
     return floor(a)
-
-
-
-
-print(fmin(f(2, 3), f(3, 4), f(1, 5), f(8, 9)))
