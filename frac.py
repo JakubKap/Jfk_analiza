@@ -42,10 +42,10 @@ class Fraction:
         return Fraction(self.nom * other.nom, self.den * other.den)
 
     def __mod__(self, other):
-        result = self
+        result = self.copy()
         while result > other:
             result -= other
-        return Fraction(self.nom)
+        return result
 
     def __pow__(self, other):
         return Fraction(self.nom ** other, self.den ** other)
