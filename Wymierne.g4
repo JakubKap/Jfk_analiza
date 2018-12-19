@@ -15,10 +15,10 @@ Ceil: 'ceil';
 Round: 'round';
 Min: 'min';
 Max: 'max';
-IntNum: ('+' | '-')? ('0' | [1-9] + [0-9]*); //licznik ułamka lub liczba całkowita np. 4/1
-Denominator: ('+' | '-')? ([1-9] + [0-9]*); //mianownik ułamka
+IntNum: ('0' | [1-9] + [0-9]*); //licznik ułamka lub liczba całkowita np. 4/1
+Denominator: ([1-9] + [0-9]*); //mianownik ułamka
 FractionBar: '/'; //kreska ułamowa
-Fraction: IntNum FractionBar Denominator; //ułamek
+Fraction: IntNum FractionBar  ('+' | '-')? Denominator; //ułamek
 Point: '.';
 LeftBracket: '(';
 RightBracket: ')';
@@ -31,7 +31,7 @@ fragment Return: '\r';
 
 Blank: (Space | Tab | NextLine | Return)+ -> skip;
 
-number: (IntNum | Fraction);
+number:  ('+' | '-')? (IntNum | Fraction);
 
 function: (Min | Max);
 function_single_value: (Sqrt | Neg | Abs | Floor | Ceil | Round);
