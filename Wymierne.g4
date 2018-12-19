@@ -15,8 +15,8 @@ Ceil: 'ceil';
 Round: 'round';
 Min: 'min';
 Max: 'max';
-IntNum: ('0' | [1-9] + [0-9]*); //licznik ułamka lub liczba całkowita np. 4/1
-Denominator: ([1-9] + [0-9]*); //mianownik ułamka
+IntNum: ('+' | '-')? ('0' | [1-9] + [0-9]*); //licznik ułamka lub liczba całkowita np. 4/1
+Denominator: ('+' | '-')? ([1-9] + [0-9]*); //mianownik ułamka
 FractionBar: '/'; //kreska ułamowa
 Fraction: IntNum FractionBar Denominator; //ułamek
 Point: '.';
