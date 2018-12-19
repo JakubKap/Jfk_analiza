@@ -43,8 +43,8 @@ class Fraction:
         return Fraction(self.nom * other.nom, self.den * other.den)
 
     def __mod__(self, other):
-        result = self.copy()
-        while result > other:
+        result = Fraction(self.nom, self.den)
+        while result >= other:
             result -= other
         return result
 
@@ -52,11 +52,11 @@ class Fraction:
         return Fraction(self.nom ** other, self.den ** other)
 
     def __floordiv__(self, other):
-        return (self / other) - (self % other)
+        return ffloor(self / other)
 
-    def __gt__(self, other):
+    def __ge__(self, other):
         common = lcm(self.den, other.den)
-        return (self.nom * common / self.den) > (other.nom * common / other.den)
+        return (self.nom * common / self.den) >= (other.nom * common / other.den)
 
     def __truediv__(self, other):
         return self * reversed(other)
