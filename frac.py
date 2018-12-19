@@ -1,3 +1,4 @@
+from math import sqrt
 
 def gcd(a, b):
     while b:
@@ -91,6 +92,7 @@ def fmin(args):
 
     return result
 
+
 def fmax(args):
     result = args[0]
     _result = result.nom / result.den
@@ -102,19 +104,29 @@ def fmax(args):
 
     return result
 
+
 def fsqrt(a):
-    pass
+    nomres = sqrt(a.nom)
+    denres = sqrt(a.den)
+
+    assert nomres % 1 == 0 and denres % 1 == 0, "Pierwiastek niewymierny"
+
+    return f(nomres, denres)
+
 
 def fabs(a):
     if a < f(0, 1):
         return a.negative()
     return a
 
+
 def ffloor(a):
     return f(a.nom - (a.nom % a.den), a.den)
 
+
 def fceil(a):
     return f(a.nom + a.den - (a.nom % a.den), a.den)
+
 
 def fround(a):
     modu = (a.nom % a.den) / a.den
