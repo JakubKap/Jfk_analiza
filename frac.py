@@ -25,9 +25,9 @@ class Fraction:
 
     def __str__(self):
         if self.den == 1:
-            return "{}".format(self.nom)
+            return "%d" %(self.nom)
         else:
-            return "{}/{}".format(self.nom, self.den)
+            return "%d/%d" %(self.nom, self.den)
 
     def __reversed__(self):
         return Fraction(self.den, self.nom)
