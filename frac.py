@@ -92,6 +92,17 @@ def fmin(args):
 
     return result
 
+def mfmin(args):
+    result = args[0]
+    _result = result.nom / result.den
+
+    for a in args[1:]:
+        if (a.nom / a.den) < _result:
+            result = a
+            _result = result.nom / result.den
+
+    return Fraction(result.nom, result.den).negative()
+
 
 def fmax(args):
     result = args[0]
@@ -104,6 +115,18 @@ def fmax(args):
 
     return result
 
+
+
+def mfmax(args):
+    result = args[0]
+    _result = result.nom / result.den
+
+    for a in args[1:]:
+        if (a.nom / a.den) > _result:
+            result = a
+            _result = result.nom / result.den
+
+    return Fraction(result.nom, result.den).negative()
 
 def fsqrt(a):
     nomres = sqrt(a.nom)

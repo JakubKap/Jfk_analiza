@@ -32,12 +32,12 @@ Blank: (Space | Tab | NextLine | Return)+ -> skip;
 
 number:  ('+' | '-')? (IntNum | Fraction);
 
-function: (Min | Max);
-function_single_value: (Sqrt | Neg | Abs | Floor | Ceil | Round);
+function: ('+' | '-')? (Min | Max);
 
 pow_operator: Pow;
 additive_operator: (Add | Sub);
 multiplicative_operator: (Mul | Div | Mod | Cong);
+function_single_value: ('+' | '-')? (Sqrt | Neg | Abs | Floor | Ceil | Round );
 
 function_expression:
     function
@@ -79,11 +79,11 @@ multiplicative_expression:
 
 expression:
 
-    multiplicative_expression
-    (
-        additive_operator
         multiplicative_expression
-    )*
+        (
+            additive_operator
+            multiplicative_expression
+        )*
 ;
 
 expression_in_brackets:

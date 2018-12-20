@@ -22,11 +22,15 @@ def evaluate_safe(tree):
             expr = next(children)
             expr_list.append(evaluate(expr))
             comma = next(children).getText()
-            
+
         if func_name == 'min':
             return fmin(expr_list)
+        elif func_name == '-min':
+            return mfmin(expr_list)
         elif func_name == 'max':
             return fmax(expr_list)
+        elif func_name == '-max':
+            return mfmax(expr_list)
         
     elif expr_type == 'Function_single_value_expressionContext':
 
@@ -36,18 +40,29 @@ def evaluate_safe(tree):
         next(children)
         expr = next(children)
 
+        print(func_name) #dodane
         if func_name == 'sqrt':
             return fsqrt(evaluate(expr))
+        elif func_name == '-sqrt':
+            return fsqrt(evaluate(expr)).negative()
         elif func_name == 'neg':
             return evaluate(expr).negative()
+        elif func_name == '-neg':
+            return evaluate(expr).norm()
         elif func_name == 'abs':
             return fabs(evaluate(expr))
         elif func_name == 'floor':
             return ffloor(evaluate(expr))
+        elif func_name == '-floor':
+            return ffloor(evaluate(expr)).negative()
         elif func_name == 'ceil':
             return fceil(evaluate(expr))
+        elif func_name == '-ceil':
+            return fceil(evaluate(expr)).negative()
         elif func_name == 'round':
             return fround(evaluate(expr))
+        elif func_name == '-round':
+            return fround(evaluate(expr)).negative()
 
     elif expr_type == 'NumberContext':
         splitted = tree.getText().split('/', 1)
