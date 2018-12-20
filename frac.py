@@ -1,4 +1,5 @@
 from math import sqrt
+from math import trunc
 
 def gcd(a, b):
     while b:
@@ -25,9 +26,9 @@ class Fraction:
 
     def __str__(self):
         if self.den == 1:
-            return "%d" %(self.nom)
+            return f'{trunc(self.nom)}'
         else:
-            return "%d/%d" %(self.nom, self.den)
+            return f'{trunc(self.nom)}/{trunc(self.den)}'
 
     def __reversed__(self):
         return Fraction(self.den, self.nom)
@@ -101,15 +102,7 @@ def fmin(args):
     return result
 
 def mfmin(args):
-    result = args[0]
-    _result = result.nom / result.den
-
-    for a in args[1:]:
-        if (a.nom / a.den) < _result:
-            result = a
-            _result = result.nom / result.den
-
-    return Fraction(result.nom, result.den).negative()
+    return fmin(args).negative()
 
 
 def fmax(args):
@@ -126,15 +119,7 @@ def fmax(args):
 
 
 def mfmax(args):
-    result = args[0]
-    _result = result.nom / result.den
-
-    for a in args[1:]:
-        if (a.nom / a.den) > _result:
-            result = a
-            _result = result.nom / result.den
-
-    return Fraction(result.nom, result.den).negative()
+    return fmax(args).negative()
 
 def fsqrt(a):
     nomres = sqrt(a.nom)
