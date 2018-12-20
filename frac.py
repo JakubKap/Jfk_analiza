@@ -146,12 +146,12 @@ def fsqrt(a):
 
 
 def fabs(a):
-    if f(0, 1).__gt__(a):
+    if f(0, 1) > a:
         return a.negative()
     return a
 
 def mfabs(a):
-    if f(0, 1).__lt__(a):
+    if f(0, 1) < a:
         return a.negative()
     return a
 
