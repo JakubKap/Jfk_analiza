@@ -122,6 +122,7 @@ def mfmax(args):
     return fmax(args).negative()
 
 def fsqrt(a):
+    assert (a.nom >= 0), "liczba nieujemna w liczniku"
     nomres = sqrt(a.nom)
     denres = sqrt(a.den)
 
