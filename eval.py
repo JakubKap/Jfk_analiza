@@ -40,7 +40,6 @@ def evaluate_safe(tree):
         next(children)
         expr = next(children)
 
-        print(func_name) #dodane
         if func_name == 'sqrt':
             return fsqrt(evaluate(expr))
         elif func_name == '-sqrt':
@@ -51,6 +50,8 @@ def evaluate_safe(tree):
             return evaluate(expr).norm()
         elif func_name == 'abs':
             return fabs(evaluate(expr))
+        elif func_name == '-abs':
+            return mfabs(evaluate(expr))
         elif func_name == 'floor':
             return ffloor(evaluate(expr))
         elif func_name == '-floor':

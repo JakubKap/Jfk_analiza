@@ -58,6 +58,14 @@ class Fraction:
         common = lcm(self.den, other.den)
         return (self.nom * common / self.den) >= (other.nom * common / other.den)
 
+    def __gt__(self, other):
+        common = lcm(self.den, other.den)
+        return (self.nom * common / self.den) > (other.nom * common / other.den)
+
+    def __lt__(self, other):
+        common = lcm(self.den, other.den)
+        return (self.nom * common / self.den) < (other.nom * common / other.den)
+
     def __truediv__(self, other):
         return self * reversed(other)
 
@@ -138,10 +146,14 @@ def fsqrt(a):
 
 
 def fabs(a):
-    if a < f(0, 1):
+    if f(0, 1).__gt__(a):
         return a.negative()
     return a
 
+def mfabs(a):
+    if f(0, 1).__lt__(a):
+        return a.negative()
+    return a
 
 def ffloor(a):
     return f(a.nom - (a.nom % a.den), a.den)
