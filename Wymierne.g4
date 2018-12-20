@@ -79,7 +79,7 @@ multiplicative_expression:
 
 expression:
 
-        multiplicative_expression
+        (multiplicative_expression)?
         (
             additive_operator
             multiplicative_expression

@@ -161,6 +161,8 @@ if __name__ == '__main__':
             tree = parser.expression()
             print(evaluate(tree))
 
+        except AssertionError:
+            print("Blad skladni")
         except EOFError:
             print("\nZnak EOF, koniec pracy")
             sys.exit(0)
