@@ -161,8 +161,8 @@ if __name__ == '__main__':
             tree = parser.expression()
             print(evaluate(tree))
 
-        except AssertionError:
-            print("Blad skladni")
+        except AssertionError as e:
+            print(str(e))
         except StopIteration:
             print("Blad skladni")
         except EOFError:
