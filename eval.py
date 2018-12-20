@@ -163,6 +163,8 @@ if __name__ == '__main__':
 
         except AssertionError:
             print("Blad skladni")
+        except StopIteration:
+            print("Blad skladni")
         except EOFError:
             print("\nZnak EOF, koniec pracy")
             sys.exit(0)
