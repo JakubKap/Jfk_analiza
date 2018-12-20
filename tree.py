@@ -8,6 +8,7 @@ def drawTreeReq(tree, level):
 
     child_len = sum(1 for _ in tree.getChildren())
 
+    i = 0
     for child in tree.getChildren():
 
         if not isinstance(child, antlr4.tree.Tree.TerminalNode):
@@ -18,7 +19,8 @@ def drawTreeReq(tree, level):
             else:
                 print('    '*level + child.getRuleContext().__class__.__name__[:-7])
                 drawTreeReq(child, level+1)
-        else:
+        elif i == 0:
+            i += 1
             print('    '*level + tree.getText())
 
 def drawTree(tree):
